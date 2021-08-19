@@ -24,6 +24,20 @@ router.get('/api/workouts', (req, res) => {
     });
 });
 
+// Get all workouts in a range.
+router.get("/api/workouts/range", (req, res) => {
+
+    db.Workout.find({}).then(dbWorkout => {
+
+        // console.log(dbWorkout);
+        
+        res.json(dbWorkout);
+    }).catch(err => {
+        res.json(err);
+    });
+
+});
+
 // Create a workout.
 router.post('/api/workouts', ({body}, res) => {
 
@@ -57,6 +71,5 @@ router.put('/api/workouts/:id', (req, res) => {
         });
 
 });
-
 
 module.exports = router;
