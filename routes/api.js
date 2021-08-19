@@ -2,6 +2,8 @@
 const db = require('../models');
 const router = require('express').Router();
 
+// Back-end routes.
+
 // Retrieve workouts.
 router.get('/api/workouts', (req, res) => {
 
@@ -9,6 +11,7 @@ router.get('/api/workouts', (req, res) => {
 
         // console.log(dbWorkout);
 
+        // Loop through workouts.
         dbWorkout.forEach(workout => {
             var total = 0;
             workout.exercises.forEach(e => {
@@ -18,14 +21,16 @@ router.get('/api/workouts', (req, res) => {
 
         });
 
+        // Display workouts.
         res.json(dbWorkout);
     }).catch(err => {
         res.json(err);
     });
 });
 
-// Get all workouts in a range.
+// Get all workouts in a range to display on dashboard.
 router.get("/api/workouts/range", (req, res) => {
+
 
     db.Workout.find({}).then(dbWorkout => {
 
@@ -41,8 +46,6 @@ router.get("/api/workouts/range", (req, res) => {
 // Create a workout.
 router.post('/api/workouts', ({body}, res) => {
 
-    // console.log(body);
-
     db.Workout.create(body).then((dbWorkout => {
         res.json(dbWorkout);
     })).catch(err => {
@@ -56,11 +59,11 @@ router.put('/api/workouts/:id', (req, res) => {
 
     db.Workout.findOneAndUpdate(
         {
-            _id: req.params.id
+            _id: req.params.id // extract ID of workout
         },
         {
-            $inc: { totalDuration: req.body.duration },
-            $push: { exercises: req.body }
+            $inc: { totalDuration: req.body.duration }, // duration
+            $push: { exercises: req.body } // all other data
         },
         {
             new: true
