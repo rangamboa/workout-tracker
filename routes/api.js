@@ -20,6 +20,7 @@ router.get('/api/workouts', (req, res) => {
 
     // addFields to get total workout duration.
     console.log('add field!');
+    console.log(db.Workout);
     db.Workout.aggregate([
         {
             $addFields: {
