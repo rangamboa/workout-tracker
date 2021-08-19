@@ -4,25 +4,34 @@ const router = require('express').Router();
 
 // Back-end routes.
 
+// Create a workout.
+router.post('/api/workouts', ({body}, res) => {
+
+    db.Workout.create(body).then((dbWorkout => {
+        res.json(dbWorkout);
+    })).catch(err => {
+        res.json(err);
+    });
+
+});
+
 // Retrieve workouts.
 router.get('/api/workouts', (req, res) => {
 
+    // addFields to get total workout duration.
+    console.log('add field!');
+    db.Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: { $sum: '$duration' }
+            }
+        }
+    ]);
+
     db.Workout.find({}).then(dbWorkout => {
 
-        // console.log(dbWorkout);
+        // console.log('oh yea: '+ totalDuration, dbWorkout);
 
-        // Loop through workouts.
-        dbWorkout.forEach(workout => {
-            let total = 0;
-            workout.exercises.forEach(e => {
-                total += e.duration;
-            });
-            // Add individual duration to total duration.
-            workout.totalDuration = total;
-
-        });
-
-        // Display workouts.
         res.json(dbWorkout);
     }).catch(err => {
         res.json(err);
@@ -45,17 +54,6 @@ router.get("/api/workouts/range", (req, res) => {
 
 });
 
-// Create a workout.
-router.post('/api/workouts', ({body}, res) => {
-
-    db.Workout.create(body).then((dbWorkout => {
-        res.json(dbWorkout);
-    })).catch(err => {
-        res.json(err);
-    });
-
-});
-
 // Add a workout.
 router.put('/api/workouts/:id', (req, res) => {
 
@@ -64,7 +62,6 @@ router.put('/api/workouts/:id', (req, res) => {
             _id: req.params.id // set ID of workout
         },
         {
-            $inc: { totalDuration: req.body.duration }, // duration
             $push: { exercises: req.body } // all other data into array
         },
         {
