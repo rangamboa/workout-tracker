@@ -3,6 +3,7 @@ const express = require('express');
 const mongojs = require('mongojs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
+const PORT = process.env.PORT || 3000
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +27,6 @@ mongoose.connect(
 app.use(require('./routes/api.js')); // back
 app.use(require('./routes/front.js')); // front
 console.log(process.env.MONGODB_URI);
-app.listen(3000, () => {
-  console.log('\n\n\n----- Now listening on port 3000. -----\n');
+app.listen(PORT, () => {
+  console.log(`\n\n\n----- Now listening on ${PORT}. -----\n`);
 });
