@@ -27,5 +27,5 @@ app.use(require('./routes/api.js')); // back
 app.use(require('./routes/front.js')); // front
 
 app.listen(3001, () => {
-  console.log('\n\n\n ----- Now listening on port 3001. -----');
+  console.log('\n\n\n----- Now listening on port 3001. -----\n');
 });
