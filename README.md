@@ -41,17 +41,17 @@ Thanks!
 
 ## Testing
 
-Testing of code was conducted in [Robo3T](https://robomongo.org), [Insomnia](https://insomnia.rest) and in-browser; error messages were parsed there and in the VS Code command line interface.
+Testing of code was conducted in [Robo3T](https://robomongo.org), [Insomnia](https://insomnia.rest) and in-browser; error messages were parsed there and in the VS Code command line interface. I have not been able to get the $addFields stage of aggregation to work correctly, and will continue to work on that to get this build to 100% functionality.
 
 ## Questions
 
 Please don't hesitate to reach out to me via [GitHub](https://github.com/rangamboa) or [email](mailto:rangamboa@gmail.com) if you've got any questions.
 ## Screenshots
 
-![Screenshot 01](public/assets/images/screenshot01.jpg "landing page")
-![Screenshot 02](public/assets/images/screenshot02.jpg "login screen")
-![Screenshot 03](public/assets/images/screenshot03.jpg "photo upload")
-![Screenshot 04](public/assets/images/screenshot04.jpg "photo gallery")
+![Screenshot 01](public/assets/images/screenshot-01.jpg 'screenshot')
+![Screenshot 02](public/assets/images/screenshot-02.jpg 'screenshot')
+![Screenshot 03](public/assets/images/screenshot-03.jpg 'screenshot')
+
 
 ## License
 
