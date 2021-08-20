@@ -25,7 +25,7 @@ mongoose.connect(
 // Set up front- and back-end routes.
 app.use(require('./routes/api.js')); // back
 app.use(require('./routes/front.js')); // front
-console.log('process.env.MONGODB_URI');
+console.log(process.env.MONGODB_URI);
 app.listen(3000, () => {
   console.log('\n\n\n----- Now listening on port 3000. -----\n');
 });
